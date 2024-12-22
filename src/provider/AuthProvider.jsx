@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, updateProfile, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, updateProfile, signInWithPopup, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 const GlobalContext = createContext();
 
@@ -12,8 +12,8 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(auth.currentUser);
     const [loading, setLoading] = useState(true);
 
-       // variables for google signin login
-       const googleProvider = new GoogleAuthProvider();
+    // variables for google signin login
+    const googleProvider = new GoogleAuthProvider();
 
     // create user with email
     const createUser = (email, password) => {
@@ -32,6 +32,22 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider);
     }
 
+    // login user with email
+    const loginUser = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    // google login
+    const loginWithGoogle = () => {
+        return signInWithPopup(auth, googleProvider);
+    }
+
+    // logout user
+    const userLogOut = () => {
+        return signOut(auth);
+    }
+
     const globalInfo = {
         createUser,
         user,
@@ -39,7 +55,10 @@ const AuthProvider = ({ children }) => {
         loading,
         setLoading,
         updateUserProfile,
-        createUserWithGoogle
+        createUserWithGoogle,
+        loginUser,
+        loginWithGoogle,
+        userLogOut
     }
 
     useEffect(() => {

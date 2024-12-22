@@ -1,10 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import ThemeController from "./ThemeController";
-
-// import { RxAvatar } from "react-icons/rx";
+import { GlobalContext } from "../provider/AuthProvider";
+import { useContext } from "react";
+import { RxAvatar } from "react-icons/rx";
 
 
 const Navbar = () => {
+    const { loading, user, userLogOut } = useContext(GlobalContext);
 
     return (
         <div className="navbar">
@@ -46,10 +48,37 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-2 md:gap-5 text-xs md:text-sm">
-                <div className="flex gap-5 items-center">
-                    <NavLink to='/login' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Login</NavLink>
-                    <NavLink to='/registration' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Register</NavLink>
-                </div>
+                {
+                    loading ? <span className="loading loading-spinner loading-md"></span>
+                        :
+                        user ? (
+                            user.photoURL ?
+                                <div className="flex gap-5 items-center">
+                                    <div className="group">
+                                        <img src={user.photoURL} className="h-[35px] w-[35px] md:h-[50px] md:w-[50px] rounded-full hover" referrerPolicy="no-referrer"></img>
+                                        <p className="z-10 px-2 py-1 absolute text-center bg-black text-white text-sm font-bold hidden group-hover:block">
+                                            {user.displayName}</p>
+                                    </div>
+                                    <div onClick={() => userLogOut()} className="btn bg-rose-600 text-white text-xs md:text-base p-1 md:p-2">Logout</div>
+                                </div>
+                                :
+                                <div className="flex gap-5 items-center">
+                                    <div className="text-3xl md:text-5xl group">
+                                        <RxAvatar />
+                                        <p className="z-10 px-2 py-1 absolute text-center bg-black text-white text-sm font-bold hidden group-hover:block">
+                                            {user.displayName}</p>
+                                    </div>
+                                    <div onClick={() => userLogOut()} className="btn bg-rose-500 text-white text-xs md:text-base p-1 md:p-2">Logout</div>
+                                </div>
+                        )
+                            :
+                            (
+                                <div className="flex gap-5 items-center">
+                                    <NavLink to='/login' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Login</NavLink>
+                                    <NavLink to='/registration' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Register</NavLink>
+                                </div>
+                            )
+                }
                 <ThemeController></ThemeController>
             </div>
         </div>
