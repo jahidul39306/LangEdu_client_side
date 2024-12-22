@@ -5,6 +5,7 @@ import { FaEye } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { GlobalContext } from "../provider/AuthProvider";
+import axios from "axios";
 
 const RegistrationPage = () => {
     const [showPass, setShowPass] = useState(false);
@@ -53,6 +54,8 @@ const RegistrationPage = () => {
             const userCredential = await createUser(email, password);
             await setUser(userCredential.user);
             await updateUserProfile({ displayName: name, photoURL: photoURL })
+            const server_url = import.meta.env.VITE_server_url;
+            await axios.post(`${server_url}/add-user`, {email: email, createdAt: new Date()});
             toast.success('Registration Successfull');
             setLoading(false);
             navigate('/');
@@ -69,6 +72,8 @@ const RegistrationPage = () => {
         try {
             const userCredential = await createUserWithGoogle();
             await setUser(userCredential.user);
+            const server_url = import.meta.env.VITE_server_url;
+            await axios.post(`${server_url}/add-user`, {email: userCredential.user.email, createdAt: new Date()});
             toast.success('Registration Successfull');
             setLoading(false);
             navigate('/');
