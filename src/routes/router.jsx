@@ -7,12 +7,13 @@ import MyTutorialsPage from "../pages/MyTutorialsPage";
 import MyBookedTutorsPage from "../pages/MyBookedTutorsPage";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement: <h1 className="text-3xl">Error Page</h1>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
