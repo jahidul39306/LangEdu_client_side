@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import TutorCard from "../components/TutorCard";
 
 
 const AllTutorsPage = () => {
@@ -11,10 +12,14 @@ const AllTutorsPage = () => {
     };
 
     const { data: tutorials, isLoading, error } = useQuery({ queryKey: ["tutorials"], queryFn: fetchTutorials });
-    console.log(tutorials);
+    if (isLoading){
+        return <h1>Loading....</h1>
+    }
     return (
-        <div>
-            {/* {data.length} */}
+        <div className="grid grid-cls-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+            {
+                tutorials.map((t) => <TutorCard key={t._id} tutor={t}></TutorCard>)
+            }
         </div>
     );
 };
