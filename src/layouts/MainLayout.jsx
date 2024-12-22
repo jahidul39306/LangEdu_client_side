@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 const MainLayout = () => {
     return (
         <div>
-            <header className="shadow-md py-2">
+            <header className="py-2">
                 <Navbar></Navbar>
             </header>
             <main className="min-h-screen">

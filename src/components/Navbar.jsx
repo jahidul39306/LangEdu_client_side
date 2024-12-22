@@ -1,4 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
+import ThemeController from "./ThemeController";
+
 // import { RxAvatar } from "react-icons/rx";
 
 
@@ -48,6 +50,7 @@ const Navbar = () => {
                     <NavLink to='/login' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Login</NavLink>
                     <NavLink to='/registration' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Register</NavLink>
                 </div>
+                <ThemeController></ThemeController>
             </div>
         </div>
     );
