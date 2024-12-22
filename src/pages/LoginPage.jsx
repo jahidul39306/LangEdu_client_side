@@ -52,7 +52,7 @@ const LoginPage = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen p-1">
-            <form onSubmit={handleSubmit} className="card-body max-w-lg bg-white shadow-lg rounded-md">
+            <form onSubmit={handleSubmit} className="card-body max-w-lg bg-rose-300 shadow-lg rounded-md">
                 {/* email */}
                 <div className="form-control">
                     <label className="label">

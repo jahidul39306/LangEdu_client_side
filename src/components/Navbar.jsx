@@ -54,19 +54,33 @@ const Navbar = () => {
                         user ? (
                             user.photoURL ?
                                 <div className="flex gap-5 items-center">
-                                    <div className="group">
-                                        <img src={user.photoURL} className="h-[35px] w-[35px] md:h-[50px] md:w-[50px] rounded-full hover" referrerPolicy="no-referrer"></img>
-                                        <p className="z-10 px-2 py-1 absolute text-center bg-black text-white text-sm font-bold hidden group-hover:block">
-                                            {user.displayName}</p>
+                                    <div className="group dropdown dropdown-end">
+                                        <div tabIndex={0} role="button" className="">
+                                            <img src={user.photoURL} className="h-[35px] w-[35px] md:h-[50px] md:w-[50px] rounded-full hover" referrerPolicy="no-referrer"></img>
+                                            <p className="z-10 px-2 py-1 absolute text-center bg-black text-white text-sm font-bold hidden group-hover:block">
+                                                {user.displayName}</p>
+                                        </div>
+                                        <ul
+                                            tabIndex={0}
+                                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                            <li className="text-base font-bold">{user.displayName}</li>
+                                        </ul>
                                     </div>
                                     <div onClick={() => userLogOut()} className="btn bg-rose-600 text-white text-xs md:text-base p-1 md:p-2">Logout</div>
                                 </div>
                                 :
                                 <div className="flex gap-5 items-center">
-                                    <div className="text-3xl md:text-5xl group">
-                                        <RxAvatar />
-                                        <p className="z-10 px-2 py-1 absolute text-center bg-black text-white text-sm font-bold hidden group-hover:block">
-                                            {user.displayName}</p>
+                                    <div className="text-3xl md:text-5xl group dropdown dropdown-end">
+                                        <div tabIndex={0} role="button" className="">
+                                            <RxAvatar />
+                                            <p className="z-10 px-2 py-1 absolute text-center bg-black text-white text-sm font-bold hidden group-hover:block">
+                                                {user.displayName}</p>
+                                        </div>
+                                        <ul
+                                            tabIndex={0}
+                                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                            <li className="text-base font-bold">{user.displayName}</li>
+                                        </ul>
                                     </div>
                                     <div onClick={() => userLogOut()} className="btn bg-rose-500 text-white text-xs md:text-base p-1 md:p-2">Logout</div>
                                 </div>
