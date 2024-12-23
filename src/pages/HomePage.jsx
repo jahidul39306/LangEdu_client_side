@@ -8,7 +8,7 @@ import Loading from "../components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import Categories from "../components/Categories";
 import Slider from "../components/Slider";
-import SliderCard from "../components/SliderCard";
+import Videos from "../components/Videos";
 
 const HomePage = () => {
     const server_url = import.meta.env.VITE_server_url;
@@ -17,6 +17,7 @@ const HomePage = () => {
         const { data } = await axios.get(`${server_url}/get-stats`);
         return data;
     };
+
 
     const { data: stats, isLoading, error } = useQuery({ queryKey: ["stats"], queryFn: fetchStats });
     if (isLoading) {
@@ -52,6 +53,12 @@ const HomePage = () => {
             <div>
                 <h1 className="text-center text-xl md:text-3xl lg:text-5xl font-bold md:mb-7">Find the right tutor for you.</h1>
                 <Slider></Slider>
+            </div>
+
+            {/* videos section */}
+            <div>
+                <h1 className="text-center text-xl md:text-3xl lg:text-5xl font-bold md:mb-7">Explore our classes</h1>
+                <Videos></Videos>
             </div>
         </div>
     );
