@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import Loading from "../components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import Categories from "../components/Categories";
+import Slider from "../components/Slider";
+import SliderCard from "../components/SliderCard";
 
 const HomePage = () => {
     const server_url = import.meta.env.VITE_server_url;
@@ -44,6 +46,12 @@ const HomePage = () => {
             <div>
                 <h1 className="text-center text-xl md:text-3xl lg:text-5xl font-bold text-rose-400 md:mb-7">Language categories</h1>
                 <Categories></Categories>
+            </div>
+
+            {/* slider section*/}
+            <div>
+                <h1 className="text-center text-xl md:text-3xl lg:text-5xl font-bold md:mb-7">Find the right tutor for you.</h1>
+                <Slider></Slider>
             </div>
         </div>
     );
