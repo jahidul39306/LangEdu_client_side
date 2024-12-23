@@ -8,6 +8,7 @@ import MyBookedTutorsPage from "../pages/MyBookedTutorsPage";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
 import ErrorPage from "../pages/ErrorPage";
+import DetailsPage from "../pages/DetailsPage";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: "/registration",
                 element: <RegistrationPage></RegistrationPage>
+            },
+            {
+                path: "/tutor/:details",
+                element: <DetailsPage></DetailsPage>
             },
         ]
     }

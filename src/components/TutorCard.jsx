@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
 import defaultImage from "../assets/avatar.jpg";
 
 const TutorCard = ({ tutor }) => {
+    const navigate = useNavigate();
+
+    const handleDetails = () => {
+        navigate(`/tutor/${tutor._id}`)
+    }
+
     return (
         
         <div className="border rounded-lg shadow-lg p-4 bg-rose-300 text-black flex flex-col">
@@ -40,7 +47,9 @@ const TutorCard = ({ tutor }) => {
             </p>
 
             {/* Button */}
-            <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded-lg">
+            <button
+            onClick={handleDetails} 
+            className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded-lg">
                 Details
             </button>
         </div>
