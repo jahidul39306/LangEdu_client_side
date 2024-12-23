@@ -24,6 +24,10 @@ const router = createBrowserRouter([
                 element: <AllTutorsPage></AllTutorsPage>
             },
             {
+                path: "/find-tutors/:category",
+                element: <AllTutorsPage></AllTutorsPage>
+            },
+            {
                 path: "/add-tutorials",
                 element: <AddTutorialsPage></AddTutorialsPage>
             },

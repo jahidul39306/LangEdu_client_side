@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Loading from "../components/Loading";
 import { useQuery } from "@tanstack/react-query";
+import Categories from "../components/Categories";
 
 const HomePage = () => {
     const server_url = import.meta.env.VITE_server_url;
@@ -24,7 +25,6 @@ const HomePage = () => {
         toast.error(error);
         return
     }
-    console.log(stats);
     return (
         <div className="space-y-8 md:space-y-20">
             {/* banner section */}
@@ -40,6 +40,11 @@ const HomePage = () => {
                 <Stats stats={stats}></Stats>
             </div>
 
+            {/* catgories section */}
+            <div>
+                <h1 className="text-center text-xl md:text-3xl lg:text-5xl font-bold text-rose-400 md:mb-7">Language categories</h1>
+                <Categories></Categories>
+            </div>
         </div>
     );
 };
