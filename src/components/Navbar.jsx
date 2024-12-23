@@ -39,7 +39,7 @@ const Navbar = () => {
                 <Link to='/' className="btn btn-ghost text-lg md:text-2xl lg:text-4xl text-rose-400">LangEdu</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 text-xl gap-10">
+                <ul className="menu menu-horizontal text-lg gap-7">
                     <NavLink to='/' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Home</NavLink>
                     <NavLink to='/find-tutors' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Find tutors</NavLink>
                     <NavLink to='/add-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Add Tutorials</NavLink>

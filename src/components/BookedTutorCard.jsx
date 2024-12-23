@@ -1,10 +1,25 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
 import defaultImage from "../assets/avatar.jpg";
+import { useContext } from "react";
+import { GlobalContext } from "../provider/AuthProvider";
+import { toast } from "react-toastify";
 
-const BookedTutorCard = ({tutor}) => {
+const BookedTutorCard = ({ tutor }) => {
 
-    const handleReview = () => {
-        // navigate(`/tutor/${tutor._id}`)
+    const server_url = import.meta.env.VITE_server_url;
+
+    const { user } = useContext(GlobalContext);
+
+    const handleReview = async () => {
+        try {
+            await axios.patch(`${server_url}/add-review/${user.email}`, { tutorId: tutor.tutorId })
+            toast.success("Successfully reviewed the tutor.");
+        }
+        catch (error) {
+            console.error('Error adding review, ', error);
+            toast.error(error.message);
+        }
     }
 
     return (
