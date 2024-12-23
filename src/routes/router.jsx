@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/my-tutorials",
-                element: <MyTutorialsPage></MyTutorialsPage>
+                element: <PrivateRoute><MyTutorialsPage></MyTutorialsPage></PrivateRoute>
             },
             {
                 path: "/my-booked-tutors",
