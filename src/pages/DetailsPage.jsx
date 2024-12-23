@@ -39,7 +39,14 @@ const DetailsPage = () => {
 
     const handleBookTutor = async () => {
         try {
-            const newBook = { tutorId: tutor._id, image: tutor.image, language: tutor.language, price: tutor.price, tutorEmail: tutor.email };
+            const newBook = {
+                tutorId: tutor._id,
+                image: tutor.image,
+                language: tutor.language,
+                price: tutor.price,
+                tutorEmail: tutor.email,
+                tutorName: tutor.name,
+            };
             await axios.post(`${server_url}/add-to-book/${user.email}`, newBook);
             toast.success("Successfully booked the tutor.");
             navigate('/my-booked-tutors');

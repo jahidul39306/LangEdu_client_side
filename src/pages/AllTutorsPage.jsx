@@ -27,7 +27,7 @@ const AllTutorsPage = () => {
     }
 
     if (error) {
-        toast.error(error);
+        toast.error(error.message);
         return
     }
     return (
