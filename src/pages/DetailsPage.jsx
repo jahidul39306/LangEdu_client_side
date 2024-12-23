@@ -1,17 +1,23 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useContext } from "react";
+import { GlobalContext } from "../provider/AuthProvider";
 
 
 
 const DetailsPage = () => {
+
+    const navigate = useNavigate();
+
     const defaultImage = "https://i.ibb.co.com/c6SK6Py/tutor-3.jpg";
+
+    const { user } = useContext(GlobalContext);
 
     const params = useParams();
     const id = params.details;
-
 
     const server_url = import.meta.env.VITE_server_url;
 
@@ -29,6 +35,20 @@ const DetailsPage = () => {
     if (error) {
         toast.error(error);
         return
+    }
+
+    const handleBookTutor = async () => {
+        try {
+            const newBook = { tutorId: tutor._id, image: tutor.image, language: tutor.language, price: tutor.price, tutorEmail: tutor.email };
+            await axios.post(`${server_url}/add-to-book/${user.email}`, newBook);
+            toast.success("Successfully booked the tutor.");
+            navigate('/my-booked-tutors');
+        }
+        catch (error) {
+            console.error('Error adding to booked tutor, ', error);
+            toast.error(error);
+        }
+
     }
 
     return (
@@ -51,7 +71,9 @@ const DetailsPage = () => {
                     <li>Language: {tutor.language}</li>
                     <li>Tutor Email: {tutor.email}</li>
                 </ul>
-                <button className="btn w-full bg-black text-white border-none">Book Tutor</button>
+                <button
+                    onClick={handleBookTutor}
+                    className="btn w-full bg-black text-white border-none">Book Tutor</button>
 
             </div>
         </div>
