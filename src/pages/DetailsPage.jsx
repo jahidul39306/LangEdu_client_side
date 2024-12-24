@@ -22,7 +22,7 @@ const DetailsPage = () => {
     const server_url = import.meta.env.VITE_server_url;
 
     const fetchDetails = async () => {
-        const { data } = await axios.get(`${server_url}/get-tutor/${id}`);
+        const { data } = await axios.get(`${server_url}/get-tutor/${id}?email=${user.email}`);
         return data;
     };
 

@@ -10,6 +10,7 @@ import RegistrationPage from "../pages/RegistrationPage";
 import ErrorPage from "../pages/ErrorPage";
 import DetailsPage from "../pages/DetailsPage";
 import PrivateRoute from "./PrivateRoute";
+import UpdateTutorialPage from "../pages/UpdateTutorialPage";
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,12 @@ const router = createBrowserRouter([
                 path: "/tutor/:details",
                 element: <PrivateRoute>
                     <DetailsPage></DetailsPage>
+                </PrivateRoute>
+            },
+            {
+                path: "/update-tutorial/:tutorialId",
+                element: <PrivateRoute>
+                    <UpdateTutorialPage></UpdateTutorialPage>
                 </PrivateRoute>
             },
         ]
