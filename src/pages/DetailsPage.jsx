@@ -48,7 +48,7 @@ const DetailsPage = () => {
                 tutorEmail: tutor.email,
                 tutorName: tutor.name,
             };
-            await axiosSecure.post(`/add-to-book/${user.email}`, newBook, { withCredentials: true });
+            await axiosSecure.post(`/add-to-book/${user.email}`, newBook);
             
             toast.success("Successfully booked the tutor.");
             navigate('/my-booked-tutors');

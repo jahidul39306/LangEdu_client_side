@@ -14,7 +14,7 @@ const useAxiosSecure = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axiosInstance.interceptors.response.use(response => {
+        const interceptor = axiosInstance.interceptors.response.use(response => {
             return response;
         }, error => {
             console.log('api response error status', error.status);
@@ -22,13 +22,18 @@ const useAxiosSecure = () => {
                 userLogOut()
                     .then(() => {
                         // redirect to the login page
+                        console.log('i from this errrrr');
                         navigate('/login')
                     })
                     .catch(err => console.log(err))
             }
             return Promise.reject(error);
-        })
-    }, []);
+        });
+        // Cleanup function to eject the interceptor
+        return () => {
+            axiosInstance.interceptors.response.eject(interceptor);
+        };
+    }, [userLogOut, navigate]);
 
     return axiosInstance;
 };

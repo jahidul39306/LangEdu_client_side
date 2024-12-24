@@ -38,7 +38,6 @@ const LoginPage = () => {
         try {
             const result = await loginWithGoogle();
             setUser(result.user);
-            setLoading(false);
             toast.success("Successfully logged in");
             navigate(location?.state ? location.state : '/');
         }

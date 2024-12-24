@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(auth.currentUser);
     const [loading, setLoading] = useState(true);
 
+
     const server_url = import.meta.env.VITE_server_url;
 
     // variables for google signin login
@@ -50,6 +51,7 @@ const AuthProvider = ({ children }) => {
 
     // logout user
     const userLogOut = () => {
+        setLoading(true);
         return signOut(auth);
     }
 
@@ -71,11 +73,13 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             if (currentUser?.email){
                 const user = {email: currentUser.email};
-                await axios.post(`${server_url}/jwt`, user, {withCredentials: true});
+                const res = await axios.post(`${server_url}/jwt`, user, {withCredentials: true});
+                console.log('login token', res.data);
                 setLoading(false);
             }
             else{
-                await axios.post(`${server_url}/logout`, {}, {withCredentials: true});
+                const res = await axios.post(`${server_url}/logout`, {}, {withCredentials: true});
+                console.log('logout token', res.data);
                 setLoading(false);
             }
         });
