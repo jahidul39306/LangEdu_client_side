@@ -4,7 +4,6 @@ import TutorCard from "../components/TutorCard";
 import { toast } from "react-toastify";
 import Loading from "../components/Loading";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 
 
 const AllTutorsPage = () => {
@@ -14,7 +13,6 @@ const AllTutorsPage = () => {
 
     const params = useParams();
     const category = params?.category;
-    // const [category, setCategory] = useState(params?.category);
 
     const fetchTutorials = async (category) => {
         if (category) {

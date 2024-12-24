@@ -2,6 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, updateProfile, signInWithPopup, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import axios from "axios";
 
 const GlobalContext = createContext();
 
@@ -11,6 +12,8 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
     const [user, setUser] = useState(auth.currentUser);
     const [loading, setLoading] = useState(true);
+
+    const server_url = import.meta.env.VITE_server_url;
 
     // variables for google signin login
     const googleProvider = new GoogleAuthProvider();
@@ -64,14 +67,24 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
-            setLoading(false);
+            if (currentUser?.email){
+                const user = {email: currentUser.email};
+                const res = await axios.post(`${server_url}/jwt`, user, {withCredentials: true});
+                console.log('login token', res.data);
+                setLoading(false);
+            }
+            else{
+                const res = await axios.post(`${server_url}/logout`, {}, {withCredentials: true});
+                console.log('logout', res.data);
+                setLoading(false);
+            }
         });
         return () => {
             unsubscribe();
         }
-    }, [auth]);
+    }, [auth, server_url]);
 
     return (
         <GlobalContext.Provider value={globalInfo}>{children}</GlobalContext.Provider>

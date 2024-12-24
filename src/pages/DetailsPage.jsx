@@ -62,7 +62,7 @@ const DetailsPage = () => {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center bg-emerald-400 border-2 border-emerald-800 rounded-lg shadow-lg mt-10">
             <div>
                 <img
-                    className="w-full md:w-[400px] rounded-l-lg"
+                    className="w-full md:w-[500px] md:h-[500px] rounded-l-lg"
                     src={tutor.image || defaultImage} alt=""
                     onError={(e) => {
                         e.target.src = defaultImage;
