@@ -127,7 +127,7 @@ const UpdateTutorialPage = () => {
                     <label className="label">
                         <span className="label-text text-black">Review (optional)</span>
                     </label>
-                    <input name="review" type="number" placeholder="Review" className="input input-bordered" defaultValue={tutor.review} step="1"/>
+                    <input name="review" type="number" placeholder="Review" className="input input-bordered" defaultValue={tutor.review} step="1" readOnly/>
                 </div>
 
 
