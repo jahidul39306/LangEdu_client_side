@@ -13,7 +13,7 @@ const MainLayout = () => {
             </main>
             <footer className="bg-green-300 mt-20">
                 <Footer></Footer>
-            </footer>I
+            </footer>
         </div>
     );
 };
