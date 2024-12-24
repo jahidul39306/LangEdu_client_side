@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 
@@ -11,8 +11,9 @@ const AddTutorialsPage = () => {
 
     const [err, setErr] = useState('');
     const { user } = useContext(GlobalContext);
-    const server_url = import.meta.env.VITE_server_url;
     const navigate = useNavigate();
+
+    const axiosSecure = useAxiosSecure();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -40,7 +41,7 @@ const AddTutorialsPage = () => {
             review,
         }
         try {
-            await axios.post(`${server_url}/add-tutorial`, tutorial);
+            await axiosSecure.post(`/add-tutorial`, tutorial);
             toast.success("Successfully added tutorial.");
             navigate('/my-tutorials');
         }

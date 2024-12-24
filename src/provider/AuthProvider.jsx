@@ -71,13 +71,11 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             if (currentUser?.email){
                 const user = {email: currentUser.email};
-                const res = await axios.post(`${server_url}/jwt`, user, {withCredentials: true});
-                console.log('login token', res.data);
+                await axios.post(`${server_url}/jwt`, user, {withCredentials: true});
                 setLoading(false);
             }
             else{
-                const res = await axios.post(`${server_url}/logout`, {}, {withCredentials: true});
-                console.log('logout', res.data);
+                await axios.post(`${server_url}/logout`, {}, {withCredentials: true});
                 setLoading(false);
             }
         });

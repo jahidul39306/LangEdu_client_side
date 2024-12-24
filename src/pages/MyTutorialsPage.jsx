@@ -1,23 +1,23 @@
 import { useContext } from "react";
 import { GlobalContext } from "../provider/AuthProvider";
-import axios from "axios";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import defaultImage from "../assets/avatar.jpg";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyTutorialsPage = () => {
-
-    const server_url = import.meta.env.VITE_server_url;
 
     const navigate = useNavigate();
 
     const { user } = useContext(GlobalContext);
 
+    const axiosSecure = useAxiosSecure();
+
     const fetchMyTutorials = async () => {
-        const { data } = await axios.get(`${server_url}/my-tutorials/${user.email}`);
+        const { data } = await axiosSecure.get(`/my-tutorials/${user.email}`);
         return data;
     };
 
@@ -47,7 +47,7 @@ const MyTutorialsPage = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`${server_url}/delete-tutorial/${tutorialId}?email=${user.email}`);
+                    await axiosSecure.delete(`/delete-tutorial/${tutorialId}?email=${user.email}`);
                     toast.success("Successfully deleted tutorial.");
                     Swal.fire({
                         title: "Deleted!",

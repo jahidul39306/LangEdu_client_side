@@ -1,18 +1,19 @@
-import axios from "axios";
 import BookedTutorCard from "../components/BookedTutorCard";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { GlobalContext } from "../provider/AuthProvider";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyBookedTutorsPage = () => {
-    const server_url = import.meta.env.VITE_server_url;
 
     const {user} = useContext(GlobalContext);
 
+    const axiosSecure = useAxiosSecure();
+
     const fetchBookedTutors = async () => {
-        const { data } = await axios.get(`${server_url}/get-booked-tutors/${user.email}`);
+        const { data } = await axiosSecure.get(`/get-booked-tutors/${user.email}`);
         return data;
     };
 

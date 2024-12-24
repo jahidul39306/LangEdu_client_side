@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 const UpdateTutorialPage = () => {
@@ -12,16 +12,16 @@ const UpdateTutorialPage = () => {
     const [err, setErr] = useState('');
 
     const { user } = useContext(GlobalContext);
-    const server_url = import.meta.env.VITE_server_url;
     const navigate = useNavigate();
 
 
     const params = useParams();
     const tutorialId = params.tutorialId;
 
+    const axiosSecure = useAxiosSecure();
 
     const fetchDetails = async () => {
-        const { data } = await axios.get(`${server_url}/get-tutor/${tutorialId}?email=${user.email}`);
+        const { data } = await axiosSecure.get(`/get-tutor/${tutorialId}?email=${user.email}`);
         return data;
     };
 
@@ -64,7 +64,7 @@ const UpdateTutorialPage = () => {
             review,
         }
         try {
-            await axios.put(`${server_url}/update-tutorial/${tutor._id}`, tutorial);
+            await axiosSecure.put(`/update-tutorial/${tutor._id}`, tutorial);
             toast.success("Successfully updated tutorial.");
             navigate('/my-tutorials');
         }

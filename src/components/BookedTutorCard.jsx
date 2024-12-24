@@ -1,19 +1,20 @@
 /* eslint-disable react/prop-types */
-import axios from "axios";
 import defaultImage from "../assets/avatar.jpg";
 import { useContext } from "react";
 import { GlobalContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const BookedTutorCard = ({ tutor }) => {
 
-    const server_url = import.meta.env.VITE_server_url;
 
     const { user } = useContext(GlobalContext);
 
+    const axiosSecure = useAxiosSecure();
+
     const handleReview = async () => {
         try {
-            await axios.patch(`${server_url}/add-review/${user.email}`, { tutorId: tutor.tutorId })
+            await axiosSecure.patch(`/add-review/${user.email}`, { tutorId: tutor.tutorId })
             toast.success("Successfully reviewed the tutor.");
         }
         catch (error) {
