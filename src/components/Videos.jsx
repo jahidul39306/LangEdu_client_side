@@ -12,9 +12,9 @@ const Videos = () => {
         return data;
     };
 
-    const { data: videos, isLoading, error } = useQuery({ queryKey: ["videos"], queryFn: fetchVideos });
+    const { data: videos, isFetching, error } = useQuery({ queryKey: ["videos"], queryFn: fetchVideos });
 
-    if (isLoading) {
+    if (isFetching) {
         return <Loading></Loading>
     }
 

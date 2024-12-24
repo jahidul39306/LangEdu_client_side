@@ -25,9 +25,9 @@ const UpdateTutorialPage = () => {
         return data;
     };
 
-    const { data: tutor, isLoading, error } = useQuery({ queryKey: ["tutorDetails"], queryFn: fetchDetails });
+    const { data: tutor, error, isFetching } = useQuery({ queryKey: ["tutorDetails"], queryFn: fetchDetails });
 
-    if (isLoading) {
+    if (isFetching) {
         return <Loading></Loading>
     }
 
@@ -35,8 +35,6 @@ const UpdateTutorialPage = () => {
         toast.error(error);
         return
     }
-
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -95,7 +93,7 @@ const UpdateTutorialPage = () => {
                     <label className="label">
                         <span className="label-text text-black">Image URL (optional)</span>
                     </label>
-                    <input name="image" type="text" placeholder="Image URL" className="input input-bordered" defaultValue={tutor.image}/>
+                    <input name="image" type="text" placeholder="Image URL" className="input input-bordered" defaultValue={tutor.image} />
                 </div>
 
 
@@ -120,14 +118,14 @@ const UpdateTutorialPage = () => {
                     <label className="label">
                         <span className="label-text text-black">Price</span>
                     </label>
-                    <input name="price" type="number" placeholder="Price" className="input input-bordered" required min='0' step="0.01" defaultValue={tutor.price}/>
+                    <input name="price" type="number" placeholder="Price" className="input input-bordered" required min='0' step="0.01" defaultValue={tutor.price} />
                 </div>
 
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text text-black">Review (optional)</span>
                     </label>
-                    <input name="review" type="number" placeholder="Review" className="input input-bordered" defaultValue={tutor.review} step="1" readOnly/>
+                    <input name="review" type="number" placeholder="Review" className="input input-bordered" defaultValue={tutor.review} step="1" readOnly />
                 </div>
 
 

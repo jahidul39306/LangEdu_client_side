@@ -27,9 +27,9 @@ const DetailsPage = () => {
         return data;
     };
 
-    const { data: tutor, isLoading, error } = useQuery({ queryKey: ["tutorDetails"], queryFn: fetchDetails });
+    const { data: tutor, isFetching, error } = useQuery({ queryKey: ["tutorDetails"], queryFn: fetchDetails });
 
-    if (isLoading) {
+    if (isFetching) {
         return <Loading></Loading>
     }
 
