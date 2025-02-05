@@ -71,7 +71,7 @@ Follow these steps to run the project locally:
 ### **1️⃣ Clone the Repository**
 ```sh
 git clone https://github.com/jahidul39306/LangEdu_client_side.git
-cd langedu
+cd LangEdu_client_side
 ```
 
 ### **2️⃣ Install Dependencies**
