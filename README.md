@@ -70,7 +70,7 @@ Follow these steps to run the project locally:
 
 ### **1️⃣ Clone the Repository**
 ```sh
-git clone https://github.com/yourusername/langedu.git
+git clone https://github.com/jahidul39306/LangEdu_client_side.git
 cd langedu
 ```
 
@@ -104,7 +104,7 @@ Now, open **http://localhost:5173** in your browser.
 
 ## 🤝 Contributors
 
-- **Your Name** – [GitHub Profile](https://github.com/yourusername)
+- **Jahidul Islam noor** – [GitHub Profile](https://github.com/jahidul39306)
 - Contributions welcome! Feel free to fork and submit pull requests.
 
 ---
