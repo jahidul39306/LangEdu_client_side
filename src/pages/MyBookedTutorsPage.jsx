@@ -17,8 +17,8 @@ const MyBookedTutorsPage = () => {
         return data;
     };
 
-    const { data: bookedTutors, isLoading, error } = useQuery({ queryKey: ["bookedTutors"], queryFn: fetchBookedTutors });
-    if (isLoading) {
+    const { data: bookedTutors, isFetching, error } = useQuery({ queryKey: ["bookedTutors"], queryFn: fetchBookedTutors });
+    if (isFetching) {
         return <Loading></Loading>
     }
 

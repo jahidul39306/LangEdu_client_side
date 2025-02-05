@@ -23,8 +23,8 @@ const AllTutorsPage = () => {
         return data;
     };
 
-    const { data: tutorials, isLoading, error } = useQuery({ queryKey: ["tutorials"], queryFn: () => fetchTutorials(category) });
-    if (isLoading) {
+    const { data: tutorials, isFetching, error } = useQuery({ queryKey: ["tutorials"], queryFn: () => fetchTutorials(category) });
+    if (isFetching) {
         return <Loading></Loading>
     }
 
