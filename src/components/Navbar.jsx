@@ -9,7 +9,7 @@ const Navbar = () => {
     const { loading, user, userLogOut } = useContext(GlobalContext);
 
     return (
-        <div className="navbar">
+        <div className="navbar container mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -31,9 +31,11 @@ const Navbar = () => {
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-3 text-md">
                         <NavLink to='/' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Home</NavLink>
                         <NavLink to='/find-tutors' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Find tutors</NavLink>
-                        <NavLink to='/add-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Add Tutorials</NavLink>
-                        <NavLink to='/my-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>My Tutorials</NavLink>
-                        <NavLink to='/my-booked-tutors' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>My booked tutors</NavLink>
+                        <div className={user ? "menu p-0 gap-3 text-md" : "hidden"}>
+                            <NavLink to='/add-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Add Tutorials</NavLink>
+                            <NavLink to='/my-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>My Tutorials</NavLink>
+                            <NavLink to='/my-booked-tutors' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>My booked tutors</NavLink>
+                        </div>
                     </ul>
                 </div>
                 <Link to='/' className="btn btn-ghost text-lg md:text-2xl lg:text-4xl text-rose-400">LangEdu</Link>
@@ -42,9 +44,12 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal text-lg gap-7">
                     <NavLink to='/' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Home</NavLink>
                     <NavLink to='/find-tutors' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Find tutors</NavLink>
-                    <NavLink to='/add-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Add Tutorials</NavLink>
-                    <NavLink to='/my-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>My Tutorials</NavLink>
-                    <NavLink to='/my-booked-tutors' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>My booked tutors</NavLink>
+                    <div className={user ? "gap-7 menu-horizontal" : "hidden"}>
+                        <NavLink to='/add-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>Add Tutorials</NavLink>
+                        <NavLink to='/my-tutorials' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>My Tutorials</NavLink>
+                        <NavLink to='/my-booked-tutors' className={({ isActive }) => (isActive ? "text-rose-300 font-bold" : "")}>My booked tutors</NavLink>
+                    </div>
+
                 </ul>
             </div>
             <div className="navbar-end gap-2 md:gap-5 text-xs md:text-sm">
